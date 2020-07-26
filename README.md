@@ -1,6 +1,12 @@
 # mcMMO
 ## The #1 RPG Mod for Minecraft
 
+## A message from Apprehentice
+This is a modified build of mcMMO for my personal RPG server. Please see the 
+official mcMMO repo for a more up-to-date version. I have put this up on the 
+internet purely to satisfy GPLv3. The rest of this readme was written by 
+the original mcMMO devs.
+
 ## Website
 I'm working on a brand new website for mcMMO
 
