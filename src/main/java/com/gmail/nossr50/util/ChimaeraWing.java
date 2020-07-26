@@ -16,8 +16,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
@@ -154,9 +157,12 @@ public final class ChimaeraWing {
         ItemMeta itemMeta = itemStack.getItemMeta();
         //noinspection ConstantConditions
         itemMeta.setDisplayName(ChatColor.GOLD + LocaleLoader.getString("Item.ChimaeraWing.Name"));
+        itemMeta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemMeta.setCustomModelData(1);
 
         List<String> itemLore = new ArrayList<>();
-        itemLore.add("mcMMO Item");
+        //itemLore.add("mcMMO Item");
         itemLore.add(LocaleLoader.getString("Item.ChimaeraWing.Lore"));
         itemMeta.setLore(itemLore);
 
@@ -164,12 +170,19 @@ public final class ChimaeraWing {
         return itemStack;
     }
 
-    public static ShapelessRecipe getChimaeraWingRecipe() {
+    public static ShapedRecipe getChimaeraWingRecipe() {
         Material ingredient = Config.getInstance().getChimaeraItem();
         int amount = Config.getInstance().getChimaeraRecipeCost();
 
-        ShapelessRecipe chimeraWing = new ShapelessRecipe(new NamespacedKey(mcMMO.p, "Chimera"), getChimaeraWing(1));
-        chimeraWing.addIngredient(amount, ingredient);
+        //ShapelessRecipe chimeraWing = new ShapelessRecipe(new NamespacedKey(mcMMO.p, "Chimera"), getChimaeraWing(1));
+        //chimeraWing.addIngredient(amount, ingredient);
+
+        ShapedRecipe chimeraWing = new ShapedRecipe(new NamespacedKey(mcMMO.p, "Chimera"), getChimaeraWing(1))
+            .shape("#@#", "@%@", "#@#")
+            .setIngredient('#', Material.FEATHER)
+            .setIngredient('@', Material.GOLD_NUGGET)
+            .setIngredient('%', Material.ENCHANTED_BOOK);
+
         return chimeraWing;
     }
 }
